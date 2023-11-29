@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [selectedReview, setSelectedReview] = useState<Review | undefined>();
 
   const fetchReviews = async () => {
-    const response = await axios.get('http://localhost:8000/review/list');
+    const response = await axios.get('http://localhost:8000/list');
     setReviews(response.data);
   };
 
@@ -23,7 +23,7 @@ const App: React.FC = () => {
   }, []);
 
   const handleDelete = async (title: string) => {
-    await axios.delete(`http://localhost:8000/review/delete?title=${title}`);
+    await axios.delete(`http://localhost:8000/delete?title=${title}`);
     fetchReviews();
   };
 

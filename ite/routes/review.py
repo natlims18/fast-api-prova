@@ -1,15 +1,14 @@
 from fastapi import APIRouter
-from config.database import mongo
-from models.reviews import Review
-from schemas.reviews import review_list
+from ite.config.database import mongo
+from ite.models.reviews import Review
+from ite.schemas.reviews import review_list
 
 router = APIRouter()
 
 @router.get("/list")
 async def review_lists():
     """List all Reviews."""
-    reviews = await mongo.reviews.find()
-    reviews = reviews.to_list(None)
+    reviews = await mongo.reviews.find().to_list(None)
     return review_list(reviews)
 
 @router.post("/create/")
@@ -23,8 +22,9 @@ async def review_detail(review: Review):
 async def review_update(title: str, review: Review):
     """Updates a review."""
     review_to_update = dict(review)
+    print(review_to_update)
 
-    mongo.reviews.find_one_and_update(
+    await mongo.reviews.find_one_and_update(
         {"title": title},
         {"$set": dict(review_to_update)}
     )
