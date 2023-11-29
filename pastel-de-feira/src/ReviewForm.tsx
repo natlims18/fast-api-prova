@@ -17,9 +17,9 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit, review }) => {
     e.preventDefault();
     const data = { title, description, author, product };
     if (review) {
-      await axios.put(`https://localhost:8000/review/update?title=${title}`, data);
+      await axios.put(`http://localhost:8000/review/update?title=${title}`, data);
     } else {
-      await axios.post(`https://localhost:8000/review/create/`, data);
+      await axios.post(`http://localhost:8000/review/create/`, data);
     }
     setTitle('');
     setDescription('');

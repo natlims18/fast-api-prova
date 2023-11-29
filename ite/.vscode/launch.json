@@ -8,11 +8,15 @@
             "name": "Python: FastAPI",
             "type": "python",
             "request": "launch",
+            "cwd": "$D:/Faculdade/LACOM/ite-api-com-front/ite",
+            "env":{
+                "PYTHONPATH": "${cwd}"
+            },
             "module": "uvicorn",
             "args": [
                 "app:app",
                 "--reload"
-            ],
+            ],            
             "jinja": true,
             "justMyCode": true
         }

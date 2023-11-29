@@ -1,23 +1,21 @@
 from fastapi import FastAPI
 from routes import main_router
 from fastapi.middleware.cors import CORSMiddleware
-
-origins = [
-    "http://localhost:3000" #App react
-]
+from fastapi.security import HTTPBasic
 
 
 app = FastAPI(
-    title="ITE Students API",
-    version="0.1.1",
+    title="ITE Review de salgados API",
+    version="1.1.1",
 )
-
 
 app.include_router(main_router)
 
+security = HTTPBasic()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

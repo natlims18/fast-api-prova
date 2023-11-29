@@ -3,15 +3,13 @@ from config.database import mongo
 from models.reviews import Review
 from schemas.reviews import review_list
 
-
 router = APIRouter()
-
 
 @router.get("/list")
 async def review_lists():
     """List all Reviews."""
     reviews = await mongo.reviews.find()
-    reviews = await reviews.to_list(None)
+    reviews = reviews.to_list(None)
     return review_list(reviews)
 
 @router.post("/create/")
